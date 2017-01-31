@@ -135,6 +135,10 @@
         <div class="container">
             <div class="recipe-articles-block no-margin">
                 <div class="row">
+
+                  <?php
+                  foreach ($recipes as $key => $value) {
+                  ?>
                     <div class="col-sm-6 col-md-4">
                         <article class="recipe-article">
                             <div class="recipe-cover">
@@ -147,56 +151,21 @@
 
                             <div class="recipe-meta">
                                 <p class="categories">
-                                    <a href="">Pizza</a>
+                                    <a href=""><?php echo $recipes[$key]["Pseudo"] ?></a>
                                 </p>
+                                <h5 class="">
+                                    <a href=""><?php echo $recipes[$key]["Date"] ?></a>
+                                </h5>
                                 <h3 class="recipe-title">
-                                    <a href="">Pizza Bacon, tomates, mozarella</a>
+                                    <a href=""><?php echo $recipes[$key]["Nom"] ?></a>
                                 </h3>
+
                             </div>
                         </article>
                     </div>
 
-                    <div class="col-sm-6 col-md-4">
-                        <article class="recipe-article">
-                            <div class="recipe-cover">
-                                <div class="cover">
-                                    <a href="">
-                                        <img src="assets/featured-recipe-2.jpg" alt="featured recipe cover" />
-                                    </a>
-                                </div>
-                            </div>
+                    <?php } ?>
 
-                            <div class="recipe-meta">
-                                <p class="categories">
-                                    <a href="">Légume</a>
-                                </p>
-                                <h3 class="recipe-title">
-                                    <a href="">Maïs grillé style mexicain</a>
-                                </h3>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4">
-                        <article class="recipe-article">
-                            <div class="recipe-cover">
-                                <div class="cover">
-                                    <a href="">
-                                        <img src="assets/featured-recipe-7.jpg" alt="featured recipe cover" />
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="recipe-meta">
-                                <p class="categories">
-                                    <a href="">Desserts</a>
-                                </p>
-                                <h3 class="recipe-title">
-                                    <a href="">Fraises au sucre</a>
-                                </h3>
-                            </div>
-                        </article>
-                    </div>
 
                 </div>
             </div>

@@ -1,6 +1,8 @@
 <?php
   class RecipesController {
     public function all() {
+      $req = Sql::doRequest("SELECT * FROM recette");
+      $recipes = $req->fetchAll();
       require_once('views/recipes/show.php');
     }
 

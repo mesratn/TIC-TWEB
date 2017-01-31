@@ -8,6 +8,7 @@
         $controller = new PagesController();
       break;
       case 'recipes':
+        require_once('models/sql.php');
         require_once('models/recipes.php');
         $controller = new RecipesController();
       break;
