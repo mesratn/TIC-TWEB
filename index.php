@@ -1,6 +1,7 @@
 
 <title>Marmiton</title>
 <meta charset="UTF-8_unicode_ci">
+<link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
 <?php
   require_once('credentials.php');
 
