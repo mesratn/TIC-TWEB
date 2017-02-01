@@ -20,7 +20,7 @@
     <!-- Recipes -->
     <div class="recipes-page-container">
         <!-- Recipes Filters -->
-        <!-- <form class="recipes-filters">
+        <form class="recipes-filters" style="display:none;">
             <div class="container">
                 <h4 class="recipes-filters-title primary-font">
                     <span class="text">Filtres</span>
@@ -53,18 +53,9 @@
 
                                 <li class="recipe-category">
                                     <div class="check-box">
-                                        <label>
-                                            <input type="checkbox" name="category-fast-food" class="check-box-input" />
-                                            <span class="check-box-title">Fast-Food</span>
-                                        </label>
-                                    </div>
-                                </li>
-
-                                <li class="recipe-category">
-                                    <div class="check-box">
                                         <label class="box-label">
                                             <input type="checkbox" name="category-deserts" class="check-box-input" />
-                                            <span class="check-box-title">Deserts</span>
+                                            <span class="check-box-title">Desserts</span>
                                         </label>
                                     </div>
                                 </li>
@@ -73,25 +64,7 @@
                                     <div class="check-box">
                                         <label class="box-label">
                                             <input type="checkbox" name="category-salads" class="check-box-input" />
-                                            <span class="check-box-title">Salade</span>
-                                        </label>
-                                    </div>
-                                </li>
-
-                                <li class="recipe-category">
-                                    <div class="check-box">
-                                        <label class="box-label">
-                                            <input type="checkbox" name="category-soups" class="check-box-input" />
-                                            <span class="check-box-title">Soupes</span>
-                                        </label>
-                                    </div>
-                                </li>
-
-                                <li class="recipe-category">
-                                    <div class="check-box">
-                                        <label class="box-label">
-                                            <input type="checkbox" name="category-sushi" class="check-box-input" />
-                                            <span class="check-box-title">Sushi</span>
+                                            <span class="check-box-title">Légumes</span>
                                         </label>
                                     </div>
                                 </li>
@@ -105,14 +78,6 @@
                                     </div>
                                 </li>
 
-                                <li class="recipe-category">
-                                    <div class="check-box">
-                                        <label class="box-label">
-                                            <input type="checkbox" name="category-vegan" class="check-box-input" />
-                                            <span class="check-box-title">Végan</span>
-                                        </label>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -126,10 +91,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12"><br>
+                      <a href="?controller=recipes&amp;action=all" class="pull-right btn btn-default">
+                        <span class="text">Appliquer les filtres</span>
+                      </a>
+                  </div>
 
                 </div>
             </div>
-        </form> -->
+        </form>
 
         <!-- Recipes -->
         <div class="container">
@@ -137,28 +107,43 @@
                 <div class="row">
 
                   <?php
-                  foreach ($recipes as $key => $value) {
+                  foreach ($recipes as $key => $recipe) {
                   ?>
                     <div class="col-sm-6 col-md-4">
                         <article class="recipe-article">
                             <div class="recipe-cover">
                                 <div class="cover">
                                     <a href="">
-                                        <img src="assets/featured-recipe-1.jpg" alt="featured recipe cover" />
+                                        <img src="assets/<?php echo $recipe["categories"][0]; ?>.jpg" alt="featured recipe cover" />
                                     </a>
                                 </div>
                             </div>
 
                             <div class="recipe-meta">
+
                                 <p class="categories">
-                                    <a href=""><?php echo $recipes[$key]["Pseudo"] ?></a>
+                                    <a href="">-<?php foreach ($recipe["categories"] as $k => $category) {
+                                      echo $category."-";
+                                    }?></a>
                                 </p>
-                                <h5 class="">
-                                    <a href=""><?php echo $recipes[$key]["Date"] ?></a>
-                                </h5>
+
                                 <h3 class="recipe-title">
-                                    <a href=""><?php echo $recipes[$key]["Nom"] ?></a>
+                                    <a href=""><?php echo $recipe["name"] ?></a>
                                 </h3>
+
+                                <div class="recipe-footer">
+                                <div class="recipe-short-meta">
+                                    <span class="date"><?php echo $recipe["date"] ?></span>
+                                    <span class="author">par <a href="#no"><?php echo $recipe["author"] ?></a></span>
+                                </div>
+
+                                <ul class="clean-list share-recipe social-block">
+                                    <li><a href="#facebook"><i class="icon-facebook"></i></a></li>
+                                    <li><a href="#google+"><i class="icon-google-plus"></i></a></li>
+                                    <li><a href="#twitter"><i class="icon-twitter"></i></a></li>
+                                    <li><a href="#instagram"><i class="icon-instagram"></i></a></li>
+                                </ul>
+                            </div>
 
                             </div>
                         </article>
@@ -178,7 +163,7 @@
                     <li>
                         <span class="page-numbers current">1</span>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#" class="page-numbers">2</a>
                     </li>
                     <li>
@@ -186,7 +171,7 @@
                     </li>
                     <li>
                         <a href="#" class="page-numbers">4</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
