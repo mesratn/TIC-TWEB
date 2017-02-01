@@ -12,7 +12,7 @@
                               <p class="slide-description">Ce dessert est une vrai merveille !<br> Faites chauffer vos papilles.</p>
 
                               <div class="slide-buttons">
-                                  <a href="?controller=recipes&action=all" class="btn btn-default">
+                                  <a href="?controller=pages&action=error" class="btn btn-default">
                                       <span class="text">En savoir plus</span>
                                   </a>
 
@@ -31,7 +31,7 @@
                                 <p class="slide-description">Cette recette express de saumon fera l'unanimité à coup sûr !<br>Découvrez ou redécouvrez le saumon sous un autre jour.</p>
 
                                 <div class="slide-buttons">
-                                    <a href="?controller=recipes&action=all" class="btn btn-default">
+                                    <a href="?controller=pages&action=error" class="btn btn-default">
                                         <span class="text">En savoir plus</span>
                                     </a>
 
@@ -54,17 +54,17 @@
                         <article class="recipe-article">
                             <div class="recipe-meta">
                                 <p class="categories">
-                                    <a href="">- Dessert -</a>
+                                    <a href="?controller=pages&action=error">- Dessert -</a>
                                 </p>
 
                                 <h2 class="recipe-title">
-                                    <a href="">Fraises au sucre</a>
+                                    <a href="?controller=pages&action=error">Fraises au sucre</a>
                                 </h2>
                             </div>
 
                             <div class="recipe-cover">
                                 <div class="cover">
-                                    <a href="">
+                                    <a href="?controller=pages&action=error">
                                         <img src="assets/featured-recipe.jpg" alt="featured recipe cover" />
                                     </a>
                                 </div>
@@ -84,7 +84,7 @@
 
                             <div class="recipe-excerpt">
                               <p>Les fraises au sucre sont très simple à faire, il suffit de quelques fraises et un paquet de sucre en poudre !<br><br>Bon appétit !</p>
-                              <a href="#" class="btn btn-simplified">En savoir plus</a>
+                              <a href="?controller=pages&action=error" class="btn btn-simplified">En savoir plus</a>
                             </div>
 
                             <div class="recipe-footer">
@@ -110,7 +110,7 @@
                                     <article class="recipe-article">
                                         <div class="recipe-cover">
                                             <div class="cover">
-                                                <a href="">
+                                                <a href="?controller=pages&action=error">
                                                     <img src="assets/featured-recipe-1.jpg" alt="featured recipe cover" />
                                                 </a>
                                             </div>
@@ -118,10 +118,10 @@
 
                                         <div class="recipe-meta">
                                             <p class="categories">
-                                                <a href="">- Pizza - Viande -</a>
+                                                <a href="?controller=pages&action=error">- Pizza - Viande -</a>
                                             </p>
                                             <h3 class="recipe-title">
-                                                <a href="">Pizza Bacon, tomates, mozarella</a>
+                                                <a href="?controller=pages&action=error">Pizza Bacon, tomates, mozarella</a>
                                             </h3>
                                         </div>
                                     </article>
@@ -131,7 +131,7 @@
                                     <article class="recipe-article">
                                         <div class="recipe-cover">
                                             <div class="cover">
-                                                <a href="">
+                                                <a href="?controller=pages&action=error">
                                                     <img src="assets/featured-recipe-2.jpg" alt="featured recipe cover" />
                                                 </a>
                                             </div>
@@ -139,10 +139,10 @@
 
                                         <div class="recipe-meta">
                                             <p class="categories">
-                                                <a href="">Légume</a>
+                                                <a href="?controller=pages&action=error">Légume</a>
                                             </p>
                                             <h3 class="recipe-title">
-                                                <a href="">Maïs grillé style mexicain</a>
+                                                <a href="?controller=pages&action=error">Maïs grillé style mexicain</a>
                                             </h3>
                                         </div>
                                     </article>
@@ -170,31 +170,31 @@
 
                                 <ul class="posts-list">
                                     <li class="post-item">
-                                        <a href="" class="post-cover">
+                                        <a href="?controller=pages&action=error" class="post-cover">
                                             <img src="assets/pizza.jpg" alt="latest post" />
                                         </a>
                                         <h5 class="post-title">
-                                            <a href="">Pizza de Nada</a>
+                                            <a href="?controller=pages&action=error">Pizza de Nada</a>
                                         </h5>
                                         <span class="post-meta">2016-12-03</span>
                                     </li>
 
                                     <li class="post-item">
-                                        <a href="" class="post-cover">
+                                        <a href="?controller=pages&action=error" class="post-cover">
                                             <img src="assets/dessert.jpg" alt="latest post" />
                                         </a>
                                         <h5 class="post-title">
-                                            <a href="">Pancake à la Myrtille</a>
+                                            <a href="?controller=pages&action=error">Pancake à la Myrtille</a>
                                         </h5>
                                         <span class="post-meta">2017-01-29</span>
                                     </li>
 
                                     <li class="post-item">
-                                        <a href="" class="post-cover">
+                                        <a href="?controller=pages&action=error" class="post-cover">
                                             <img src="assets/pizza.jpg" alt="latest post" />
                                         </a>
                                         <h5 class="post-title">
-                                            <a href="">Pizza</a>
+                                            <a href="?controller=pages&action=error">Pizza</a>
                                         </h5>
                                         <span class="post-meta">2017-01-31</span>
                                     </li>
@@ -206,10 +206,10 @@
                                 <h5 class="widget-title primary-font">Categories</h5>
 
                                 <ul class="clean-list categories-list">
-                                    <li class="category" data-category="meat"><a href="">Viande</a> - <span class="nr">1</span></li>
-                                    <li class="category" data-category="fish"><a href="">Poisson</a> - <span class="nr">0</span></li>
-                                    <li class="category" data-category="vegetarian"><a href="">Végétarien</a> - <span class="nr">0</span></li>
-                                    <li class="category" data-category="dessert"><a href="">Desserts</a> - <span class="nr">1</span></li>
+                                    <li class="category" data-category="meat"><a href="?controller=pages&action=error">Viande</a> - <span class="nr">1</span></li>
+                                    <li class="category" data-category="fish"><a href="?controller=pages&action=error">Poisson</a> - <span class="nr">0</span></li>
+                                    <li class="category" data-category="vegetarian"><a href="?controller=pages&action=error">Végétarien</a> - <span class="nr">0</span></li>
+                                    <li class="category" data-category="dessert"><a href="?controller=pages&action=error">Desserts</a> - <span class="nr">1</span></li>
                                 </ul>
                             </div>
                         </aside>
