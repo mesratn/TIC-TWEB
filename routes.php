@@ -18,8 +18,8 @@
   }
 
   $controllers = array(
-    'pages' => ['home', 'recipe', 'error'],
-    'recipes' => ['all', 'add', 'error'],
+    'pages' => ['home', 'error'],
+    'recipes' => ['all', 'add', 'addRecipe', 'detailRecipe', 'error'],
   );
 
   if (array_key_exists($controller, $controllers)) {

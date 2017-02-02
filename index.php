@@ -2,6 +2,8 @@
 <title>Marmiton</title>
 <meta charset="UTF-8_unicode_ci">
 <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+<script src="lib/jquery-3.1.1.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <?php
   require_once('credentials.php');
 

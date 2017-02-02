@@ -18,8 +18,6 @@
 
       <link rel="stylesheet" href="css/screen.css" />
 
-      <script src="lib/jquery-3.1.1.min.js"></script>
-      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body id="page" class="front-page" ng-app="Marmiton">
       <div class="page-wrapper">
