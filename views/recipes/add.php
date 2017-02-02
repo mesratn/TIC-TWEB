@@ -78,7 +78,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label class="box-label">
-                                    <input type="checkbox" name="category-deserts" class="check-box-input" />
+                                    <input type="checkbox" name="category-dessert" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Desserts</span>
                                 </label>
                             </div>
@@ -87,7 +87,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label class="box-label">
-                                    <input type="checkbox" name="category-salads" class="check-box-input" />
+                                    <input type="checkbox" name="category-vegetarian" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Légumes</span>
                                 </label>
                             </div>

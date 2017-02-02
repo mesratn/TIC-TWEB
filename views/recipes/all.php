@@ -114,7 +114,7 @@
                             <div class="recipe-cover">
                                 <div class="cover">
                                     <a href="">
-                                        <img src="assets/<?php echo $recipe["categories"][0]; ?>.jpg" alt="featured recipe cover" />
+                                        <img src="assets/<?php echo "Pizza" ?>.jpg" alt="featured recipe cover" />
                                     </a>
                                 </div>
                             </div>
