@@ -1,8 +1,14 @@
 <script>
   var i = 1;
+  var j = 1;
   var clearList = function() {
     $( "#ingredientList" ).empty();
     i = 1;
+    console.log("List deleted");
+  }
+  var clearStepList = function() {
+    $( "#stepList" ).empty();
+    j = 1;
     console.log("List deleted");
   }
   var addIngredient = function() {
@@ -10,6 +16,12 @@
       $("#ingredientList").append("<br><div class='col-md-12'><div class='col-md-1'><h4 style='color:#f6c935;'>#"+i+"</h4></div><div class='col-md-6'><input name='ingredientName[]' type='text' placeholder='Nom' class='form-control input-md'></div><div class='col-md-3'><input name='ingredientQte[]' type='number' min=0 placeholder='Quantité'' class='form-control input-md'></div><div class='col-md-2'><select name='ingredientUnit[]' class='form-control'><option value='g'>g</option><option value='mL'>mL</option><option value='L'>L</option><option value='Cuil. Soupe'>Cuil. Soupe</option><option value='Cuil. Café''>Cuil. Café</option></select></div></div>");
     console.log("Ingredient added");
     ++i;
+  }
+  var addStep = function() {
+    if (j <= 5)
+      $("#stepList").append("  <div class='form-group'><div class='input-line col-md-2'><h4 style='color: #f6c935;'>Step #"+j+"</h4></div><div class='input-line col-md-10'><textarea name='steps[]' class='form-input check-value'></textarea></div></div>");
+    console.log("Step added");
+    ++j;
   }
 </script>
 
@@ -60,7 +72,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label>
-                                    <input type="checkbox" name="category-meat" class="check-box-input" />
+                                    <input type="checkbox" name="viande" class="check-box-input" />
                                     <span style="color:#f6c935;" class="author check-box-title">Viande</span>
                                 </label>
                             </div>
@@ -69,7 +81,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label>
-                                    <input type="checkbox" name="category-pizza" class="check-box-input" />
+                                    <input type="checkbox" name="pizza" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Pizza</span>
                                 </label>
                             </div>
@@ -78,7 +90,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label class="box-label">
-                                    <input type="checkbox" name="category-dessert" class="check-box-input" />
+                                    <input type="checkbox" name="dessert" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Desserts</span>
                                 </label>
                             </div>
@@ -87,7 +99,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label class="box-label">
-                                    <input type="checkbox" name="category-vegetarian" class="check-box-input" />
+                                    <input type="checkbox" name="vegetarien" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Légumes</span>
                                 </label>
                             </div>
@@ -96,7 +108,7 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label class="box-label">
-                                    <input type="checkbox" name="category-fish" class="check-box-input" />
+                                    <input type="checkbox" name="poisson" class="check-box-input" />
                                     <span style="color:#f6c935;" class="check-box-title">Poisson</span>
                                 </label>
                             </div>
@@ -127,16 +139,9 @@
         <div class="row">
             <h4 style="color:white;" class="block-title primary-font">Étape(s)</h4>
           <fieldset>
-            <div id="dynamicSteps">
-              <div class="form-group">
-                <div class="input-line col-md-10">
-                    <textarea class="form-input check-value"></textarea>
-                </div>
-                <div class="col-md-2" style="margin-left: 10%; margin-top: 5%;">
-                  <button class="btn btn-warning" type="button" onClick="addStep('dynamicSteps');"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
+            <button class="btn btn-warning" type="button" onClick="addStep();"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-danger" type="button" onclick="clearStepList();" ><i class="fa fa-trash"></i></button>
+            <div id="stepList"></div>
           </fieldset>
         </div>
         <span class="btn-wrapper align-center"><br>

@@ -35,43 +35,43 @@
 
     public function add() {
       if(isset($_POST)) {
-      // $i = 0;
-      // echo "E-mail : ".$_POST['email']."<br>";
-      // echo "Auteur : ".$_POST['name']."<br>";
-      // echo "Titre de la recette : ".$_POST['title']."<br>";
-      // echo "Description : ".$_POST['description']."<br>";
-      // echo "Temps de préparation : ".$_POST['time']." minutes<br>";
-      // echo "Catégories : ".$_POST['category-meat'].", ".$_POST['category-fish'].", ".$_POST['category-deserts'].", ".$_POST['category-pizza'].", ".$_POST['category-salads'];
-      //
-      // echo( "ingredients : ");
-      //
-      // while($_POST['ingredientName'][$i])
-      // {
-      //   echo "<br>".$_POST['ingredientName'][$i]." ".$_POST['ingredientQte'][$i]." ".$_POST['ingredientUnit'][$i].", ";
-      //   ++$i;
-      // }
-      //----
+
+      //ADD RECIPE
       $now = date("Y-m-d");
-      echo $now;
       $l = 0;
         $cat = ["pizza", "dessert"];
         Sql::doRequest("INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Temps`, `Date`) VALUES (NULL, '".$_POST['title']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['time']."', '".$now."')");
         $res = Sql::doRequest("SELECT `ID` FROM `recette` WHERE `Description` = '".$_POST['description']."' AND `Nom` = '".$_POST['title']."'");
         $idRecette = $res->fetchAll()[0][0];
-        echo($idRecette);
-        while($cat[$l]){
 
-        if ($_POST['category-'.$cat[$l].''] == "on"){
-          $resID = Sql::doRequest("SELECT `ID` FROM `categorie` WHERE `Nom` = '".strtoupper($cat[$l])."';");
-          $id = $resID->fetchAll()[0][0];
-          echo($id);
-          ++$l;
-          //Sql::doRequest("INSERT INTO `list_recette_categorie` (`ID_recette`, `ID_categorie`) VALUES ('".$id."', '".$idRecette."')");
+          //ADD CATEGORIES
+        while($cat[$l]) {
+          if ($_POST[$cat[$l]] == "on"){
+            $resID = Sql::doRequest("SELECT `ID` FROM `categorie` WHERE `Nom` = '".strtoupper($cat[$l])."';");
+             $id = $resID->fetchAll()[0][0];
+           // PB FOREIGN BDD
+            Sql::doRequest("INSERT INTO `list_recette_categorie` (`ID_recette`, `ID_categorie`) VALUES ('1', '1')");
+            //
+          }
+        ++$l;
         }
+        //ADD INGREDIENT
+        $a=0;
+        while($_POST['ingredientName'][$a])
+        {
+          Sql::doRequest("INSERT INTO `ingredient` (`ID`, `Nom`, `Quantite`, `Unite`) VALUES (NULL, '".$_POST['ingredientName'][$a]."', '".$_POST['ingredientQte'][$a]."', '".$_POST['ingredientUnit'][$a]."')");
+          $re = Sql::doRequest("SELECT `ID` FROM `ingredient` WHERE `Nom` = '".$_POST['ingredientName'][$a]."' AND `Quantite` = '".$_POST['ingredientQte'][$a]."'");
+          $idIngredient = $re->fetchAll()[0][0];
+          Sql::doRequest("INSERT INTO `list_recette_ingredient` (`ID_recette`, `ID_ingredient`) VALUES ('".$idRecette."', '".$idIngredient."')");
+          ++$a;
         }
 
-
-
+        //ADD STEPS
+        $e = 0;
+        while($_POST['steps'][$e]){
+        Sql::doRequest("INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES ('etape".($e+1)."', '".$e."', '".$_POST['steps'][$e]."', '".$idRecette."')");
+        ++$e;
+        }
     }
   }
 

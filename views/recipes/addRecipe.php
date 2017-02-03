@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-    <section class="section section-error">
+    <section style="background-image: url(assets/hero-bg-1.jpg);" class="section section-error">
         <div class="error-section-inner">
             <div class="error-message-block">
                 <h2 class="block-title">Ajout de recette</h2>
