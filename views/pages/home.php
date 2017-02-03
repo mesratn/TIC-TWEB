@@ -111,7 +111,7 @@
                                         <div class="recipe-cover">
                                             <div class="cover">
                                                 <a href="?controller=pages&action=error">
-                                                    <img src="assets/featured-recipe-1.jpg" alt="featured recipe cover" />
+                                                    <img src="assets/Pizza.jpg" alt="featured recipe cover" />
                                                 </a>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                                         <div class="recipe-cover">
                                             <div class="cover">
                                                 <a href="?controller=pages&action=error">
-                                                    <img src="assets/featured-recipe-2.jpg" alt="featured recipe cover" />
+                                                    <img src="assets/Legume.jpg" alt="featured recipe cover" />
                                                 </a>
                                             </div>
                                         </div>

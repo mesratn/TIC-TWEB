@@ -22,6 +22,8 @@
         $recipes[$key]['id'] = $value['ID'];
         $recipes[$key]['name'] = $value['Nom'];
         $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
         $recipes[$key]['date'] = $value['Date'];
         $i = 0;
         foreach ($recipeCategory as $k => $val) {
@@ -39,8 +41,8 @@
       //ADD RECIPE
       $now = date("Y-m-d");
       $l = 0;
-        $cat = ["pizza", "dessert"];
-        Sql::doRequest("INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Temps`, `Date`) VALUES (NULL, '".$_POST['title']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['time']."', '".$now."')");
+        $cat = ["pizza", "dessert", "japonais"];
+        Sql::doRequest("INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Difficulte`, `Temps`, `Date`) VALUES (NULL, '".$_POST['title']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['difficulty']."', '".$_POST['time']."', '".$now."')");
         $res = Sql::doRequest("SELECT `ID` FROM `recette` WHERE `Description` = '".$_POST['description']."' AND `Nom` = '".$_POST['title']."'");
         $idRecette = $res->fetchAll()[0][0];
 
@@ -49,9 +51,7 @@
           if ($_POST[$cat[$l]] == "on"){
             $resID = Sql::doRequest("SELECT `ID` FROM `categorie` WHERE `Nom` = '".strtoupper($cat[$l])."';");
              $id = $resID->fetchAll()[0][0];
-           // PB FOREIGN BDD
-            Sql::doRequest("INSERT INTO `list_recette_categorie` (`ID_recette`, `ID_categorie`) VALUES ('1', '1')");
-            //
+            Sql::doRequest("INSERT INTO `list_recette_categorie` (`ID_recette`, `ID_categorie`) VALUES ('".$idRecette."', '".$id."')");
           }
         ++$l;
         }

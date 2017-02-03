@@ -114,9 +114,20 @@
                             <div class="recipe-cover">
                                 <div class="cover">
                                     <a href="">
-                                        <img src="assets/<?php echo "Pizza" ?>.jpg" alt="featured recipe cover" />
+                                        <img src="assets/<?php echo $recipe["categories"][0] ?>.jpg" alt="featured recipe cover" />
                                     </a>
                                 </div>
+                                <ul class="clean-list recipe-details">
+                                    <li class="detail">
+                                        <i class="icon-time"></i>
+                                        <span class="value"><?php echo $recipe["time"]." minutes" ?></span>
+                                    </li>
+
+                                    <li class="detail">
+                                        <i class="icon-chef"></i>
+                                        <span class="value"><?php echo $recipe["difficulty"] ?></span>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div class="recipe-meta">

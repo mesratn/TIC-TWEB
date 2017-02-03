@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 02 Février 2017 à 16:41
+-- Généré le :  Mer 01 Février 2017 à 14:33
 -- Version du serveur :  5.7.17-0ubuntu0.16.04.1
 -- Version de PHP :  5.6.28-1+deb.sury.org~xenial+1
 
@@ -30,7 +30,7 @@ USE `marmiton`;
 --
 
 CREATE TABLE `categorie` (
-  `ID` int(50) UNSIGNED NOT NULL,
+  `ID` int(50) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT ,
   `Nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -40,7 +40,11 @@ CREATE TABLE `categorie` (
 
 INSERT INTO `categorie` (`ID`, `Nom`) VALUES
 (1, 'Dessert'),
-(2, 'autre');
+(2, 'Pizza'),
+(3, 'Legume'),
+(4, 'Japonais'),
+(5, 'Fruit'),
+(6, 'Soupe');
 
 -- --------------------------------------------------------
 
@@ -61,8 +65,7 @@ CREATE TABLE `etape` (
 
 INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES
 ('Etape 1', 1, 'Faire ca', 1),
-('Etape 2', 2, 'Faire autre chose', 1),
-('Etape1', 1, 'Voilaaa', 1);
+('Etape 2', 2, 'Faire autre chose', 1);
 
 -- --------------------------------------------------------
 
@@ -71,10 +74,10 @@ INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES
 --
 
 CREATE TABLE `ingredient` (
-  `ID` int(50) UNSIGNED NOT NULL,
+  `ID` int(50) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Nom` varchar(50) NOT NULL,
   `Quantite` int(50) NOT NULL,
-  `Unite` varchar(50) DEFAULT NULL
+  `Unite` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -83,9 +86,7 @@ CREATE TABLE `ingredient` (
 
 INSERT INTO `ingredient` (`ID`, `Nom`, `Quantite`, `Unite`) VALUES
 (1, 'Sucre', 200, 'g'),
-(2, 'Beurre', 50, 'g'),
-(3, 'Oeufs', 5, ''),
-(4, 'chocolat', 10, '');
+(2, 'Beurre', 50, 'g');
 
 -- --------------------------------------------------------
 
@@ -152,10 +153,11 @@ INSERT INTO `note` (`ID_recette`, `Note`, `Commentaire`, `Pseudo`) VALUES
 --
 
 CREATE TABLE `recette` (
-  `ID` int(50) UNSIGNED NOT NULL,
+  `ID` int(50) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Nom` varchar(50) NOT NULL,
   `Pseudo` varchar(50) NOT NULL,
   `Description` text,
+  `Difficulte` varchar(50) NOT NULL,
   `Temps` int(50) DEFAULT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -164,34 +166,8 @@ CREATE TABLE `recette` (
 -- Contenu de la table `recette`
 --
 
-INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Temps`, `Date`) VALUES
-(1, 'Chocolat', 'Nada', NULL, NULL, '2017-02-02'),
-(2, 'Nuggets', 'Lola', NULL, NULL, '2017-02-02');
-
--- --------------------------------------------------------
-
---
--- Doublure de structure pour la vue `view_recette`
---
-CREATE TABLE `view_recette` (
-`recette_id` int(50) unsigned
-,`recette_nom` varchar(50)
-,`Pseudo` varchar(50)
-,`Date` date
-,`ingredient_id` int(50) unsigned
-,`ingredient_nom` varchar(50)
-,`Quantite` int(50)
-,`Unite` varchar(50)
-);
-
--- --------------------------------------------------------
-
---
--- Structure de la vue `view_recette`
---
-DROP TABLE IF EXISTS `view_recette`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_recette`  AS  select `RTT`.`ID` AS `recette_id`,`RTT`.`Nom` AS `recette_nom`,`RTT`.`Pseudo` AS `Pseudo`,`RTT`.`Date` AS `Date`,`ING`.`ID` AS `ingredient_id`,`ING`.`Nom` AS `ingredient_nom`,`ING`.`Quantite` AS `Quantite`,`ING`.`Unite` AS `Unite` from ((`recette` `RTT` left join `list_recette_ingredient` `LRI` on((`LRI`.`ID_recette` = `RTT`.`ID`))) left join `ingredient` `ING` on((`ING`.`ID` = `LRI`.`ID_ingredient`))) ;
+INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Difficulte`,`Temps`, `Date`) VALUES
+(1, 'Chocolat', 'Nada', 'Blabla', 'Facile', '20', '2017-02-02');
 
 --
 -- Index pour les tables exportées
@@ -200,8 +176,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 -- Index pour la table `categorie`
 --
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Index pour la table `etape`
@@ -212,13 +186,12 @@ ALTER TABLE `etape`
 --
 -- Index pour la table `ingredient`
 --
-ALTER TABLE `ingredient`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Index pour la table `list_recette_categorie`
 --
 ALTER TABLE `list_recette_categorie`
+  ADD KEY `frk_categorie_recette` (`ID_categorie`),
   ADD KEY `frk_recette_categorie` (`ID_recette`);
 
 --
@@ -237,28 +210,7 @@ ALTER TABLE `note`
 --
 -- Index pour la table `recette`
 --
-ALTER TABLE `recette`
-  ADD PRIMARY KEY (`ID`);
 
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `categorie`
---
-ALTER TABLE `categorie`
-  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `ingredient`
---
-ALTER TABLE `ingredient`
-  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `recette`
---
-ALTER TABLE `recette`
-  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
@@ -273,7 +225,7 @@ ALTER TABLE `etape`
 -- Contraintes pour la table `list_recette_categorie`
 --
 ALTER TABLE `list_recette_categorie`
-  ADD CONSTRAINT `frk_categorie_recette` FOREIGN KEY (`ID_recette`) REFERENCES `categorie` (`ID`),
+  ADD CONSTRAINT `frk_categorie_recette` FOREIGN KEY (`ID_categorie`) REFERENCES `categorie` (`ID`),
   ADD CONSTRAINT `frk_recette_categorie` FOREIGN KEY (`ID_recette`) REFERENCES `recette` (`ID`);
 
 --

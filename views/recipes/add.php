@@ -42,7 +42,7 @@
   <div class="container" style="margin-top:-10%;">
     <form method="post" action="index.php?controller=recipes&action=addRecipe" style="margin-bottom:25%;" class="contact-form">
 
-        <h1 class="form-title">Alors vous êtes fin cuisinier ?</h1>
+        <h1 class="form-title">Êtes-vous un fin cuisinier ?</h1>
         <p class="form-subtitle">Laissez nous votre nom ainsi que votre e-mail afin que nous puissions vous prévenir de la validation de votre recettes. </p>
         <div class="input-line">
             <input type="text" name="name" class="form-input check-value" required/>
@@ -72,8 +72,8 @@
                         <li class="recipe-category">
                             <div class="check-box">
                                 <label>
-                                    <input type="checkbox" name="viande" class="check-box-input" />
-                                    <span style="color:#f6c935;" class="author check-box-title">Viande</span>
+                                    <input type="checkbox" name="japonais" class="check-box-input" />
+                                    <span style="color:#f6c935;" class="author check-box-title">Japonais</span>
                                 </label>
                             </div>
                         </li>
@@ -96,24 +96,6 @@
                             </div>
                         </li>
 
-                        <li class="recipe-category">
-                            <div class="check-box">
-                                <label class="box-label">
-                                    <input type="checkbox" name="vegetarien" class="check-box-input" />
-                                    <span style="color:#f6c935;" class="check-box-title">Légumes</span>
-                                </label>
-                            </div>
-                        </li>
-
-                        <li class="recipe-category">
-                            <div class="check-box">
-                                <label class="box-label">
-                                    <input type="checkbox" name="poisson" class="check-box-input" />
-                                    <span style="color:#f6c935;" class="check-box-title">Poisson</span>
-                                </label>
-                            </div>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -121,6 +103,16 @@
               <div class="recipes-filters-block">
                   <h4 style="color:white;" class="block-title primary-font">Temps de préparation (minutes)</h4>
                   <input id="timeinput" min = 0 max = 120 name="time" type="number" placeholder="5 minutes" class="form-control input-md" required>
+              </div>
+              <br>
+              <h4 style="color:white;" class="block-title primary-font">Difficulté</h4>
+              <div class="input-line">
+                  <select type="text" name="difficulty" class="form-input check-value" required>
+                    <option>Facile</option>
+                    <option>Intermédiaire</option>
+                    <option>Difficle</option>
+                    <option>Expert</option>
+                  </select>
               </div>
             </div>
         </div>
