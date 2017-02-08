@@ -114,6 +114,11 @@
                     <option>Expert</option>
                   </select>
               </div>
+              <br>
+              <h4 style="color:white;" class="block-title primary-font">Nombre de personne</h4>
+              <div class="input-line">
+                  <input type="number" name="size" class="form-input check-value" required></input>
+              </div>
             </div>
         </div>
         <br>

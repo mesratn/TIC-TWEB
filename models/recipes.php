@@ -6,7 +6,7 @@
 
     }
 
-    public function get() {
+    public function getAll() {
       $req = Sql::doRequest("SELECT * FROM recette");
       $data = $req->fetchAll();
       foreach ($data as $key => $value) {
@@ -35,6 +35,25 @@
       return $recipes;
     }
 
+    public function getByID() {
+      if(!isset($_GET['id']))
+        return 0;
+      $id = $_GET['id'];
+      $req = Sql::doRequest("SELECT * FROM recette WHERE ID = $id");
+      $data = $req->fetch();
+      $recipe['id']= $data['ID'];
+      $recipe['name'] = $data['Nom'];
+      $recipe['author'] = $data['Pseudo'];
+      $recipe['description'] = $data['Description'];
+      $recipe['time'] = $data['Temps'];
+      $recipe['difficulty'] = $data['Difficulte'];
+      $recipe['date'] = $data['Date'];
+      $recipe['size'] = $data['Size'];
+
+      return $recipe;
+    }
+
+
     public function add() {
       if(isset($_POST)) {
 
@@ -42,7 +61,7 @@
       $now = date("Y-m-d");
       $l = 0;
         $cat = ["pizza", "dessert", "japonais"];
-        Sql::doRequest("INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Difficulte`, `Temps`, `Date`) VALUES (NULL, '".$_POST['title']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['difficulty']."', '".$_POST['time']."', '".$now."')");
+        Sql::doRequest("INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Difficulte`, `Temps`, `Date` , `Size`) VALUES (NULL, '".$_POST['title']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['difficulty']."', '".$_POST['time']."', '".$now."', '".$_POST['size']."')");
         $res = Sql::doRequest("SELECT `ID` FROM `recette` WHERE `Description` = '".$_POST['description']."' AND `Nom` = '".$_POST['title']."'");
         $idRecette = $res->fetchAll()[0][0];
 
@@ -72,6 +91,9 @@
         Sql::doRequest("INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES ('etape".($e+1)."', '".$e."', '".$_POST['steps'][$e]."', '".$idRecette."')");
         ++$e;
         }
+    }
+    else {
+      echo "ERROR";
     }
   }
 

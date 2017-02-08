@@ -113,7 +113,7 @@
                         <article class="recipe-article">
                             <div class="recipe-cover">
                                 <div class="cover">
-                                    <a href="">
+                                    <a href="?controller=recipes&action=detailRecipe&id=<?php echo $recipe["id"]?>">
                                         <img src="assets/<?php echo $recipe["categories"][0] ?>.jpg" alt="featured recipe cover" />
                                     </a>
                                 </div>
@@ -139,18 +139,17 @@
                                 </p>
 
                                 <h3 class="recipe-title">
-                                    <a href=""><?php echo $recipe["name"] ?></a>
+                                    <a href="?controller=recipes&action=detailRecipe&id=<?php echo $recipe["id"]?>"><?php echo $recipe["name"] ?></a>
                                 </h3>
 
                                 <div class="recipe-footer">
                                 <div class="recipe-short-meta">
                                     <span class="date"><?php echo $recipe["date"] ?></span>
-                                    <span class="author">par <a href="#no"><?php echo $recipe["author"] ?></a></span>
+                                    <span class="author">par <a href=""><?php echo $recipe["author"] ?></a></span>
                                 </div>
 
                                 <ul class="clean-list share-recipe social-block">
                                     <li><a href="#facebook"><i class="icon-facebook"></i></a></li>
-                                    <li><a href="#google+"><i class="icon-google-plus"></i></a></li>
                                     <li><a href="#twitter"><i class="icon-twitter"></i></a></li>
                                     <li><a href="#instagram"><i class="icon-instagram"></i></a></li>
                                 </ul>
