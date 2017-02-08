@@ -88,7 +88,7 @@
         //ADD STEPS
         $e = 0;
         while($_POST['steps'][$e]){
-        Sql::doRequest("INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES ('etape".($e+1)."', '".$e."', '".$_POST['steps'][$e]."', '".$idRecette."')");
+        Sql::doRequest("INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES ('Nom', '".$e."', '".$_POST['steps'][$e]."', '".$idRecette."')");
         ++$e;
         }
     }

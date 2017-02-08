@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 08 Février 2017 à 15:58
+-- Généré le :  Mer 08 Février 2017 à 18:24
 -- Version du serveur :  5.6.34
 -- Version de PHP :  5.6.28
 
@@ -18,6 +18,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `marmiton`
 --
+
 CREATE DATABASE `marmiton`;
 USE `marmiton`;
 
@@ -57,6 +58,14 @@ CREATE TABLE `etape` (
   `ID_recette` int(50) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `etape`
+--
+
+INSERT INTO `etape` (`Nom`, `Numero`, `Instructions`, `ID_recette`) VALUES
+('Etape 1', 1, 'Faire ca', 1),
+('Etape 2', 2, 'Faire autre chose', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,8 +84,8 @@ CREATE TABLE `ingredient` (
 --
 
 INSERT INTO `ingredient` (`ID`, `Nom`, `Quantite`, `Unite`) VALUES
-(10, 'Riz', 500, 'g'),
-(11, 'Eau', 1, 'L'),
+(1, 'Sucre', 200, 'g'),
+(2, 'Beurre', 50, 'g');
 
 -- --------------------------------------------------------
 
@@ -94,7 +103,7 @@ CREATE TABLE `list_recette_categorie` (
 --
 
 INSERT INTO `list_recette_categorie` (`ID_recette`, `ID_categorie`) VALUES
-(8, 4);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -112,8 +121,8 @@ CREATE TABLE `list_recette_ingredient` (
 --
 
 INSERT INTO `list_recette_ingredient` (`ID_recette`, `ID_ingredient`) VALUES
-(8, 10),
-(8, 11),
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -129,6 +138,15 @@ CREATE TABLE `note` (
   `Email` varchar(50) NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `note`
+--
+
+INSERT INTO `note` (`ID_recette`, `Note`, `Commentaire`, `Pseudo`, `Email`, `Date`) VALUES
+(1, 5, 'Superbe recette', 'BLU', '', '2017-02-02 00:00:00'),
+(1, 1, 'LOL, une recette ? Une blague oui !!', 'NON', '', '2017-02-02 00:00:00'),
+(1, 1, 'Bof ;(', 'Baba', 'baba@baba.fr', '2017-02-08 18:24:17');
 
 -- --------------------------------------------------------
 
@@ -152,7 +170,7 @@ CREATE TABLE `recette` (
 --
 
 INSERT INTO `recette` (`ID`, `Nom`, `Pseudo`, `Description`, `Difficulte`, `Temps`, `Date`, `Size`) VALUES
-(8, 'Sushi', 'Baba', 'Recette de sushi facile à reproduire', 'Intermédiaire', 30, '2017-02-08', 4);
+(1, 'Chocolat', 'Nada', 'Blabla', 'Facile', 20, '2017-02-02', 0);
 
 --
 -- Index pour les tables exportées
@@ -215,12 +233,12 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `recette`
 --
 ALTER TABLE `recette`
-  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(50) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Contraintes pour les tables exportées
 --
