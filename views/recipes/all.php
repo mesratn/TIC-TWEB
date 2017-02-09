@@ -20,7 +20,7 @@
     <!-- Recipes -->
     <div class="recipes-page-container">
         <!-- Recipes Filters -->
-        <form class="recipes-filters" style="display:none;">
+        <form method="get" class="recipes-filters" style="display:block;">
             <div class="container">
                 <h4 class="recipes-filters-title primary-font">
                     <span class="text">Filtres</span>
@@ -92,9 +92,9 @@
                         </div>
                     </div>
                     <div class="col-md-12"><br>
-                      <a href="?controller=recipes&amp;action=all" class="pull-right btn btn-default">
+                      <button onclick="console.log($('.number-value')[0]);" class="pull-right btn btn-default">
                         <span class="text">Appliquer les filtres</span>
-                      </a>
+                      </button>
                   </div>
 
                 </div>
@@ -140,6 +140,14 @@
 
                                 <h3 class="recipe-title">
                                     <a href="?controller=recipes&action=detailRecipe&id=<?php echo $recipe["id"]?>"><?php echo $recipe["name"] ?></a>
+                                    <br>
+                                    <?php
+                                    $note = $recipe['note'];
+                                      while($note != 0) {
+                                        echo "<i style='background: -webkit-linear-gradient(left,#f58a00 0,#f6d640 100%);-webkit-text-fill-color: transparent;-webkit-background-clip: text; color: #f6c935;' class='icon-star'></i>";
+                                        $note--;
+                                      }
+                                    ?>
                                 </h3>
 
                                 <div class="recipe-footer">

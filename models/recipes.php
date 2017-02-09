@@ -10,6 +10,76 @@
       $req = Sql::doRequest("SELECT * FROM recette");
       $data = $req->fetchAll();
       foreach ($data as $key => $value) {
+
+        $recipes[$key]['id'] = $value['ID'];
+        $recipes[$key]['name'] = $value['Nom'];
+        $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
+        $recipes[$key]['date'] = $value['Date'];
+
+        $notes = Notes::getByID($value['ID']);
+        $note = 0;
+        $count = 0;
+        foreach ($notes as $k => $val) {
+          $note += $val['Note'];
+          $count++;
+        }
+        $note = $note/$count;
+        $recipes[$key]['note'] = round($note);
+
+        $recipeCategory = Categories::getNameByID($value['ID']);
+        $i = 0;
+        foreach ($recipeCategory as $k => $val) {
+            $recipes[$key]['categories'][$i] = $val['Nom'];
+            $i++;
+        }
+      }
+
+      return $recipes;
+    }
+
+    public function getPopular() {
+      $req = Sql::doRequest("SELECT * FROM recette");
+      $data = $req->fetchAll();
+      foreach ($data as $key => $value) {
+        $notes = Notes::getByID($value['ID']);
+        $note = 0;
+        $count = 0;
+        foreach ($notes as $k => $val) {
+          $note += $val['Note'];
+          $count++;
+        }
+        $note = round($note/$count);
+        if($note > 3){
+        $recipes[$key]['note'] = $note;
+
+        $recipeCategory = Categories::getNameByID($value['ID']);
+        $i = 0;
+        foreach ($recipeCategory as $k => $val) {
+            $recipes[$key]['categories'][$i] = $val['Nom'];
+            $i++;
+        }
+
+        $recipes[$key]['id'] = $value['ID'];
+        $recipes[$key]['name'] = $value['Nom'];
+        $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
+        $recipes[$key]['date'] = $value['Date'];
+      }
+
+      }
+
+      return $recipes;
+    }
+
+
+    public function getLast() {
+      $req = Sql::doRequest("SELECT * FROM recette ORDER BY Date DESC LIMIT 3;");
+      $data = $req->fetchAll();
+      foreach ($data as $key => $value) {
+
         $sql = "SELECT CAT.Nom
                 FROM categorie AS CAT
                 JOIN list_recette_categorie AS RCT
@@ -25,14 +95,27 @@
         $recipes[$key]['time'] = $value['Temps'];
         $recipes[$key]['difficulty'] = $value['Difficulte'];
         $recipes[$key]['date'] = $value['Date'];
-        $i = 0;
+
+        $i=0;
         foreach ($recipeCategory as $k => $val) {
             $recipes[$key]['categories'][$i] = $val['Nom'];
             $i++;
         }
-      }
+
+        }
 
       return $recipes;
+    }
+
+    public function getNbByCategory($id)
+    {
+      $recipes = Sql::doRequest("SELECT * FROM list_recette_categorie WHERE ID_categorie = ".$id."");
+      $j = 0;
+        foreach ($recipes as $key => $value) {
+          ++$j;
+        }
+
+      return $j;
     }
 
     public function getByID() {
@@ -93,7 +176,7 @@
         }
     }
     else {
-      echo "ERROR";
+      require_once("view/pages/error.php");
     }
   }
 

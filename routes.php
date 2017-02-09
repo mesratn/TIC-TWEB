@@ -5,13 +5,19 @@
 
     switch($controller) {
       case 'pages':
+      require_once('models/sql.php');
+      require_once('models/recipes.php');
+      require_once('models/ingredients.php');
+      require_once('models/categories.php');
+      require_once('models/steps.php');
+      require_once('models/notes.php');
         $controller = new PagesController();
       break;
       case 'recipes':
         require_once('models/sql.php');
         require_once('models/recipes.php');
-        require_once('models/categories.php');
         require_once('models/ingredients.php');
+        require_once('models/categories.php');
         require_once('models/steps.php');
         require_once('models/notes.php');
         $controller = new RecipesController();

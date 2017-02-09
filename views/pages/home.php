@@ -106,49 +106,63 @@
                           <h1 class="section-title">Les recettes au top</h1>
                             <div class="row">
 
-                                <div class="col-sm-6">
+                              <?php
+                              foreach ($popularRecipe as $key => $popular) {
+                              ?>
+                                <div class="col-sm-6 col-md-4">
                                     <article class="recipe-article">
                                         <div class="recipe-cover">
                                             <div class="cover">
-                                                <a href="?controller=pages&action=error">
-                                                    <img src="assets/Pizza.jpg" alt="featured recipe cover" />
+                                                <a href="?controller=recipes&action=detailRecipe&id=<?php echo $popular["id"]?>">
+                                                    <img src="assets/<?php echo $popular["categories"][0] ?>.jpg" alt="featured recipe cover" />
                                                 </a>
                                             </div>
+                                            <ul class="clean-list recipe-details">
+                                                <li class="detail">
+                                                    <i class="icon-time"></i>
+                                                    <span class="value"><?php echo $popular["time"]." minutes" ?></span>
+                                                </li>
+
+                                                <li class="detail">
+                                                    <i class="icon-chef"></i>
+                                                    <span class="value"><?php echo $popular["difficulty"] ?></span>
+                                                </li>
+                                            </ul>
                                         </div>
 
                                         <div class="recipe-meta">
+
                                             <p class="categories">
-                                                <a href="?controller=pages&action=error">- Pizza - Viande -</a>
+                                                <a href="">-<?php foreach ($popular["categories"] as $k => $category) {
+                                                  echo $category."-";
+                                                }?></a>
                                             </p>
+
                                             <h3 class="recipe-title">
-                                                <a href="?controller=pages&action=error">Pizza Bacon, tomates, mozarella</a>
+                                                <a href="?controller=recipes&action=detailRecipe&id=<?php echo $popular["id"]?>"><?php echo $popular["name"] ?></a>
+                                                <br>
+                                                <?php
+                                                $note = $popular['note'];
+                                                  while($note != 0) {
+                                                    echo "<i style='background: -webkit-linear-gradient(left,#f58a00 0,#f6d640 100%);-webkit-text-fill-color: transparent;-webkit-background-clip: text; color: #f6c935;' class='icon-star'></i>";
+                                                    $note--;
+                                                  }
+                                                ?>
                                             </h3>
+
+                                            <div class="recipe-footer">
+                                            <div class="recipe-short-meta">
+                                                <span class="date"><?php echo $popular["date"] ?></span>
+                                                <span class="author">par <a href=""><?php echo $popular["author"] ?></a></span>
+                                            </div>
+
+                                        </div>
+
                                         </div>
                                     </article>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <article class="recipe-article">
-                                        <div class="recipe-cover">
-                                            <div class="cover">
-                                                <a href="?controller=pages&action=error">
-                                                    <img src="assets/Legume.jpg" alt="featured recipe cover" />
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="recipe-meta">
-                                            <p class="categories">
-                                                <a href="?controller=pages&action=error">Légume</a>
-                                            </p>
-                                            <h3 class="recipe-title">
-                                                <a href="?controller=pages&action=error">Maïs grillé style mexicain</a>
-                                            </h3>
-                                        </div>
-                                    </article>
-                                </div>
-
-
+                                <?php } ?>
 
 
 
@@ -169,35 +183,19 @@
                                 <h5 class="widget-title primary-font">Les dernières recettes</h5>
 
                                 <ul class="posts-list">
-                                    <li class="post-item">
-                                        <a href="?controller=pages&action=error" class="post-cover">
-                                            <img src="assets/pizza.jpg" alt="latest post" />
+                                  <?php
+                                  foreach ($lastRecipe as $key => $value) {
+                                    echo "<li class='post-item'>
+                                        <a href='?controller=recipes&action=detailRecipe&id=".$value['id']."' class='post-cover'>
+                                            <img src='assets/".$value['categories'][0].".jpg' alt='latest post' />
                                         </a>
-                                        <h5 class="post-title">
-                                            <a href="?controller=pages&action=error">Pizza de Nada</a>
+                                        <h5 class='post-title'>
+                                            <a href='?controller=recipes&action=detailRecipe&id=".$value['id']."'>".$value['name']."</a>
                                         </h5>
-                                        <span class="post-meta">2016-12-03</span>
-                                    </li>
-
-                                    <li class="post-item">
-                                        <a href="?controller=pages&action=error" class="post-cover">
-                                            <img src="assets/dessert.jpg" alt="latest post" />
-                                        </a>
-                                        <h5 class="post-title">
-                                            <a href="?controller=pages&action=error">Pancake à la Myrtille</a>
-                                        </h5>
-                                        <span class="post-meta">2017-01-29</span>
-                                    </li>
-
-                                    <li class="post-item">
-                                        <a href="?controller=pages&action=error" class="post-cover">
-                                            <img src="assets/pizza.jpg" alt="latest post" />
-                                        </a>
-                                        <h5 class="post-title">
-                                            <a href="?controller=pages&action=error">Pizza</a>
-                                        </h5>
-                                        <span class="post-meta">2017-01-31</span>
-                                    </li>
+                                        <span class='post-meta'>".$value['date']."</span>
+                                    </li>";
+                                  }
+                                   ?>
                                 </ul>
                             </div>
 
@@ -206,10 +204,11 @@
                                 <h5 class="widget-title primary-font">Categories</h5>
 
                                 <ul class="clean-list categories-list">
-                                    <li class="category" data-category="meat"><a href="?controller=pages&action=error">Viande</a> - <span class="nr">1</span></li>
-                                    <li class="category" data-category="fish"><a href="?controller=pages&action=error">Poisson</a> - <span class="nr">0</span></li>
-                                    <li class="category" data-category="vegetarian"><a href="?controller=pages&action=error">Végétarien</a> - <span class="nr">0</span></li>
-                                    <li class="category" data-category="dessert"><a href="?controller=pages&action=error">Desserts</a> - <span class="nr">1</span></li>
+                                  <?php
+                                  foreach ($categories as $key => $value) {
+                                    echo "<li class='category' data-category=''><i style='color:#f6c935;font-size:14px;' class='fa fa-cutlery'></i> <a href='?controller=pages&action=error'> ".$value['Nom']."</a> - <span class='nr'>".$value['nbRecipe']."</span></li>";
+                                  }
+                                   ?>
                                 </ul>
                             </div>
                         </aside>
