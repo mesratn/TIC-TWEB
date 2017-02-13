@@ -29,7 +29,7 @@
 
   $controllers = array(
     'pages' => ['home', 'error'],
-    'recipes' => ['all', 'add', 'addRecipe', 'detailRecipe', 'error'],
+    'recipes' => ['all', 'filter', 'add', 'addRecipe', 'detailRecipe', 'error'],
   );
 
   if (array_key_exists($controller, $controllers)) {

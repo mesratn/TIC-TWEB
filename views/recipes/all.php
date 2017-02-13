@@ -20,7 +20,7 @@
     <!-- Recipes -->
     <div class="recipes-page-container">
         <!-- Recipes Filters -->
-        <form method="get" class="recipes-filters" style="display:block;">
+        <form method="post" action="?controller=recipes&action=filter" class="recipes-filters" style="display:block;">
             <div class="container">
                 <h4 class="recipes-filters-title primary-font">
                     <span class="text">Filtres</span>
@@ -36,7 +36,7 @@
                                 <li class="recipe-category">
                                     <div class="check-box">
                                         <label>
-                                            <input type="checkbox" name="category-meat" class="check-box-input" />
+                                            <input type="checkbox" name="category[]" value="Viande" class="check-box-input" />
                                             <span class="check-box-title">Viande</span>
                                         </label>
                                     </div>
@@ -45,7 +45,7 @@
                                 <li class="recipe-category">
                                     <div class="check-box">
                                         <label>
-                                            <input type="checkbox" name="category-pizza" class="check-box-input" />
+                                            <input type="checkbox" name="category[]" value="Pizza" class="check-box-input" />
                                             <span class="check-box-title">Pizza</span>
                                         </label>
                                     </div>
@@ -54,7 +54,7 @@
                                 <li class="recipe-category">
                                     <div class="check-box">
                                         <label class="box-label">
-                                            <input type="checkbox" name="category-deserts" class="check-box-input" />
+                                            <input type="checkbox" name="category[]" value="Dessert" class="check-box-input" />
                                             <span class="check-box-title">Desserts</span>
                                         </label>
                                     </div>
@@ -63,7 +63,7 @@
                                 <li class="recipe-category">
                                     <div class="check-box">
                                         <label class="box-label">
-                                            <input type="checkbox" name="category-salads" class="check-box-input" />
+                                            <input type="checkbox" name="category[]" value="Légume" class="check-box-input" />
                                             <span class="check-box-title">Légumes</span>
                                         </label>
                                     </div>
@@ -72,7 +72,7 @@
                                 <li class="recipe-category">
                                     <div class="check-box">
                                         <label class="box-label">
-                                            <input type="checkbox" name="category-fish" class="check-box-input" />
+                                            <input type="checkbox" name="category[]" value="Poisson" class="check-box-input" />
                                             <span class="check-box-title">Poisson</span>
                                         </label>
                                     </div>
@@ -87,12 +87,52 @@
                             <h5 class="block-title primary-font">Temps de préparation (minutes)</h5>
 
                             <div class="no-ui-slider">
-                                <div class="slider" data-min="0" data-max="120" data-start="15" data-stop="45" data-step="5"></div>
+                                <div id="slider" class="slider" name="time" data-min="0" data-max="120" data-start="0" data-stop="120" data-step="5"></div>
+                                <input id="minTime" type="hidden" name=minTime value="0">
+                                <input id="maxTime" type="hidden" name=maxTime value="120">
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="recipes-filters-block">
+                            <br><h5 class="block-title primary-font">Difficulté</h5>
+
+                            <ul class="clean-list recipe-categories">
+                                <li class="recipe-category">
+                                    <div class="check-box">
+                                        <label>
+                                            <input type="radio" name="difficulty" value="Facile" class="" checked/>
+                                            <span class="check-box-title">Facile</span>
+                                        </label>
+                                    </div>
+                                    <div class="check-box">
+                                        <label>
+                                            <input type="radio" name="difficulty" value="Intermédiaire" class="" />
+                                            <span class="check-box-title">Intermédiaire</span>
+                                        </label>
+                                    </div>
+                                    <div class="check-box">
+                                        <label>
+                                            <input type="radio" name="difficulty" value="Difficile" class="" />
+                                            <span class="check-box-title">Difficile</span>
+                                        </label>
+                                    </div>
+                                    <div class="check-box">
+                                        <label>
+                                            <input type="radio" name="difficulty" value="Expert" class="" />
+                                            <span class="check-box-title">Expert</span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+
                     <div class="col-md-12"><br>
-                      <button onclick="console.log($('.number-value')[0]);" class="pull-right btn btn-default">
+                      <button onclick="var slider = document.getElementById('slider');var array=slider.noUiSlider.get();$('#minTime').val(array[0]);$('#maxTime').val(array[1]);console.log('submit');" class="pull-right btn btn-default">
                         <span class="text">Appliquer les filtres</span>
                       </button>
                   </div>

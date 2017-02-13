@@ -4,6 +4,10 @@
 <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
 <script src="lib/jquery-3.1.1.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/vendors/jquery.js"></script>
+<script src="js/vendors/slick.js"></script>
+<script src="js/vendors/nouislider.js"></script>
+<script src="js/functions.js"></script>
 <?php
   require_once('credentials.php');
 

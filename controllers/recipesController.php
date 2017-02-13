@@ -2,8 +2,24 @@
   class RecipesController {
     public function all() {
       $recipes = Recipe::getAll();
+
       if ($recipes == NULL)
         require_once('views/pages/error.php');
+      else
+        require_once('views/recipes/all.php');
+    }
+
+    public function filter() {
+  if(empty($_POST['category']) && empty($_POST['difficulty']))
+  {
+    $recipes = Recipe::getAll();
+  }
+  else {
+    $recipes = Recipe::getByFilters($_POST['category'], $_POST['difficulty'], $_POST['minTime'], $_POST['maxTime']);
+  }
+
+      if ($recipes == NULL)
+        require_once('views/pages/errorRecipe.php');
       else
         require_once('views/recipes/all.php');
     }

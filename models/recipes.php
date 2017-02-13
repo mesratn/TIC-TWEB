@@ -39,6 +39,52 @@
       return $recipes;
     }
 
+    public function getByFilters($categories, $difficulty, $minTime, $maxTime) {
+      $req = Sql::doRequest("SELECT * FROM recette WHERE Difficulte = '".$difficulty."' AND Temps > ".$minTime." AND Temps < ".$maxTime."");
+      $data = $req->fetchAll();
+      $cpt = 0;
+      foreach ($data as $key => $value) {
+
+        $recipes[$key]['id'] = $value['ID'];
+        $recipes[$key]['name'] = $value['Nom'];
+        $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
+        $recipes[$key]['date'] = $value['Date'];
+
+        $notes = Notes::getByID($value['ID']);
+        $note = 0;
+        $count = 0;
+        foreach ($notes as $k => $val) {
+          $note += $val['Note'];
+          $count++;
+        }
+        $note = $note/$count;
+        $recipes[$key]['note'] = round($note);
+
+        $recipeCategory = Categories::getNameByID($value['ID']);
+        $i = 0;
+        foreach ($recipeCategory as $k => $val) {
+            $recipes[$key]['categories'][$i] = $val['Nom'];
+            $i++;
+        }
+        if(!empty($categories)){
+        foreach ($categories as $a => $catName) {
+          if (in_array($catName, $recipes[$key]['categories'])) {
+            // echo "<script>alert('".$catName."');</script>";
+            $recipesFiltered[$cpt] = $recipes[$key];
+            $cpt++;
+            break;
+          }
+        }
+      }
+      else {
+        $recipesFiltered = $recipes;
+      }
+      }
+      return $recipesFiltered;
+    }
+
     public function getPopular() {
       $req = Sql::doRequest("SELECT * FROM recette");
       $data = $req->fetchAll();

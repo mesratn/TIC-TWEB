@@ -31,9 +31,9 @@
             ?>
       </div>
 
-    <script src="js/vendors/jquery.js"></script>
+    <!-- <script src="js/vendors/jquery.js"></script>
     <script src="js/vendors/slick.js"></script>
     <script src="js/vendors/nouislider.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="js/functions.js"></script> -->
     </body>
     </html>

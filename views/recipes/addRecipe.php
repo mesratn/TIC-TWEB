@@ -12,6 +12,10 @@
                 <a href="?controller=pages&action=home" class="btn btn-default">
                   <span class="text">Retourner à l'accueil</span>
                 </a>
+
+                <a style="margin-top:2%;" href="?controller=recipes&action=all" class="btn btn-default">
+                    <span class="text">Retourner à la liste des recettes</span>
+                </a>
             </div>
         </div>
     </section>
