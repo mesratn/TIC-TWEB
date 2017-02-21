@@ -10,18 +10,18 @@
     }
 
     public function filter() {
-  if(empty($_POST['category']) && empty($_POST['difficulty']))
-  {
-    $recipes = Recipe::getAll();
-  }
-  else {
-    $recipes = Recipe::getByFilters($_POST['category'], $_POST['difficulty'], $_POST['minTime'], $_POST['maxTime']);
-  }
+      if(empty($_POST['category']) && empty($_POST['difficulty']))
+      {
+        $recipes = Recipe::getAll();
+      }
+      else {
+        $recipes = Recipe::getByFilters($_POST['category'], $_POST['difficulty'], $_POST['minTime'], $_POST['maxTime']);
+      }
 
-      if ($recipes == NULL)
-        require_once('views/pages/errorRecipe.php');
-      else
-        require_once('views/recipes/all.php');
+          if ($recipes == NULL)
+            require_once('views/pages/errorRecipe.php');
+          else
+            require_once('views/recipes/all.php');
     }
 
     public function add() {
@@ -31,6 +31,21 @@
     public function addRecipe() {
       Recipe::add();
       require_once('views/recipes/addRecipe.php');
+    }
+
+    public function searchRecipe() {
+      if(empty($_GET['search']) || empty($_GET['Type']))
+      {
+        $recipes = Recipe::getAll();
+      }
+      else {
+        $recipes = Recipe::doSearch($_GET['Type']);
+      }
+
+          if ($recipes == NULL)
+            require_once('views/pages/errorRecipe.php');
+          else
+            require_once('views/recipes/search.php');
     }
 
     public function detailRecipe() {

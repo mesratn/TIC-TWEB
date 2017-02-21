@@ -182,6 +182,85 @@
       return $recipe;
     }
 
+    public function doSearch($type) {
+      if ($type == "ingredient")
+        $recipes = getByIngredient();
+      else
+        $recipes = getByCategory();
+      return $recipes;
+    }
+
+    public function getByCategory() {
+      if(!isset($_GET['search']))
+        return 0;
+      $nom = $_GET['search'];
+      $req = Sql::doRequest("SELECT RTT.Nom FROM recette AS RTT JOIN list_recette_categorie AS RCT ON RCT.ID_recette = RTT.ID JOIN categorie AS CAT ON RCT.ID_categorie = CAT.ID WHERE CAT.Nom = ".$nom."");
+      $data = $req->fetchAll();
+      foreach ($data as $key => $value) {
+
+        $recipes[$key]['id'] = $value['ID'];
+        $recipes[$key]['name'] = $value['Nom'];
+        $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
+        $recipes[$key]['date'] = $value['Date'];
+
+        $notes = Notes::getByID($value['ID']);
+        $note = 0;
+        $count = 0;
+        foreach ($notes as $k => $val) {
+          $note += $val['Note'];
+          $count++;
+        }
+        $note = $note/$count;
+        $recipes[$key]['note'] = round($note);
+
+        $recipeCategory = Categories::getNameByID($value['ID']);
+        $i = 0;
+        foreach ($recipeCategory as $k => $val) {
+            $recipes[$key]['categories'][$i] = $val['Nom'];
+            $i++;
+        }
+      }
+
+      return $recipes;
+    }
+
+    public function getByIngredient() {
+      if(!isset($_GET['search']))
+        return 0;
+      $nom = $_GET['search'];
+      $req = Sql::doRequest("SELECT RTT.Nom FROM recette AS RTT JOIN list_recette_ingredient AS RIT ON RIT.ID_recette = RTT.ID JOIN ingredient AS ING ON RIT.ID_ingredient = ING.ID WHERE ING.Nom = ".$nom."");
+      $data = $req->fetchAll();
+      foreach ($data as $key => $value) {
+
+        $recipes[$key]['id'] = $value['ID'];
+        $recipes[$key]['name'] = $value['Nom'];
+        $recipes[$key]['author'] = $value['Pseudo'];
+        $recipes[$key]['time'] = $value['Temps'];
+        $recipes[$key]['difficulty'] = $value['Difficulte'];
+        $recipes[$key]['date'] = $value['Date'];
+
+        $notes = Notes::getByID($value['ID']);
+        $note = 0;
+        $count = 0;
+        foreach ($notes as $k => $val) {
+          $note += $val['Note'];
+          $count++;
+        }
+        $note = $note/$count;
+        $recipes[$key]['note'] = round($note);
+
+        $recipeCategory = Categories::getNameByID($value['ID']);
+        $i = 0;
+        foreach ($recipeCategory as $k => $val) {
+            $recipes[$key]['categories'][$i] = $val['Nom'];
+            $i++;
+        }
+      }
+
+      return $recipes;
+    }
 
     public function add() {
       if(isset($_POST)) {
